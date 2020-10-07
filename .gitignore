@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+const path = window.location.href.split("/");
+const id = path[path.length - 1];
