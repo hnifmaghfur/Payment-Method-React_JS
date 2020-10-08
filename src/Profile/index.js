@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import Samuel from "../assets/img/samuel.svg";
 
 class Profile extends Component {
+  constructor(props) {
+    console.log(props);
+    super();
+    this.data = props;
+  }
   render() {
     return (
       <>
@@ -23,8 +27,10 @@ class Profile extends Component {
             />
             edit
           </div>
-          <div className="font-lg font-20">Robert Chadler</div>
-          <div className="font-medium font-20 mb-5">phone</div>
+          <div className="font-lg font-20">
+            {this.data.data.firstName} {this.data.data.lastName}
+          </div>
+          <div className="font-medium font-20 mb-5">{this.data.data.phone}</div>
           <Link
             to=""
             className="bg-grey-50 text-decoration-none text-black-50 w-50 p-3 rounded-7 my-2"

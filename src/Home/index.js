@@ -3,12 +3,18 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 
 class Home extends Component {
-  state = {
-    data: [],
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      data: [],
+    };
+    this.path = window.location.href.split("/");
+    this.id = this.path[this.path.length - 1];
+    console.log(this.path);
+  }
 
   componentDidMount() {
-    Axios.get("http://localhost:8000/api/users/3").then((response) => {
+    Axios.get(`http://localhost:8000/api/users/${this.id}`).then((response) => {
       this.setState({ data: response.data.data[0] });
     });
   }
@@ -22,7 +28,7 @@ class Home extends Component {
               <div>
                 <div className="my-2 text-white font-light">Balance</div>
                 <h1 className="font-40 text-white my-3 font-lg">
-                  Rp. {this.state.data.balance}{" "}
+                  Rp. {this.state.data.balance}
                 </h1>
                 <div className="my-2 text-white font-light">
                   {this.state.data.phone}
@@ -30,18 +36,26 @@ class Home extends Component {
               </div>
               <div className="d-flex flex-lg-column flex-row justify-content-between mt-lg-0 mt-1">
                 <Link
-                  to="/transfer"
+                  to="/3/transfer"
                   className="btn bg-outline-grey text-white font-lg font-20 py-2 px-4 mb-0 mx-lg-0 mx-3 mb-lg-2 rounded-7"
                 >
-                  <img src="" alt="" className="d-none d-sm-inline" />
+                  <img
+                    src={require("../assets/img/transfer.svg")}
+                    alt=""
+                    className="d-none d-sm-inline mr-2"
+                  />
                   Transfer
                 </Link>
 
                 <Link
-                  to="/topup"
+                  to="/3/topup"
                   className="btn bg-outline-grey text-white font-lg font-20 py-2 px-4 mb-0 mx-lg-0 mx-3 mb-lg-2 rounded-7"
                 >
-                  <img src="" alt="" className="d-none d-sm-inline" />
+                  <img
+                    src={require("../assets/img/top-up.svg")}
+                    alt=""
+                    className="d-none d-sm-inline mr-2"
+                  />
                   Top Up
                 </Link>
               </div>
@@ -57,7 +71,7 @@ class Home extends Component {
                     <div className="font-20 font-light">Rp.2.120.000</div>
                   </div>
                   <div className="col-6">
-                    <img src="asset/home/arrow-down.svg" alt="" />
+                    <img src={require("../assets/img/expense.svg")} alt="" />
                     <div className="small my-2 font-light">Expense</div>
                     <div className="font-20 font-light">Rp.1.560.000</div>
                   </div>

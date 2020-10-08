@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Match,
-  Miss,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Axios from "axios";
 import "./App.css";
 import Home from "./Home";
@@ -19,14 +12,17 @@ import { HeaderNav, FooterNav, Navbar, History } from "./Components";
 
 function App() {
   const [data, setData] = useState([]);
+  const path = window.location.href.split("/");
+  const id = path[path.length - 1];
   useEffect(() => {
-    Axios.get("http://localhost:8000/api/users/3")
+    Axios.get(`http://localhost:8000/api/users/${id}`)
       .then((res) => {
         setData(res.data.data[0]);
-        // console.log(res.data.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  console.log(data);
 
   return (
     <Router>
@@ -41,25 +37,25 @@ function App() {
             </div>
             <div className="col-9 pl-lg-2">
               <Switch>
-                <Route exact path="/">
-                  <Home />
+                <Route exact path="/:id">
+                  <Home data={data} />
                 </Route>
-                <Route exact path="/transfer">
+                <Route exact path="/:id/transfer">
                   <Transfer />
                 </Route>
-                <Route exact path="/topup">
+                <Route exact path="/:id/topup">
                   <Topup />
                 </Route>
-                <Route exact path="/profile">
-                  <Profile />
+                <Route exact path="/:id/profile">
+                  <Profile data={data} />
                 </Route>
-                <Route exact path="/history">
+                <Route exact path="/:id/history">
                   <History />
                 </Route>
-                <Route exact path="/confirmation">
+                <Route exact path="/:id/id/confirmation/to/:to">
                   <Confirmation />
                 </Route>
-                <Route exact path="/input_transfer">
+                <Route exact path="/:id/id/input_transfer/:to">
                   <InputTransfer />
                 </Route>
               </Switch>

@@ -19,8 +19,14 @@ const HeaderNav = (props) => {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <div className="d-flex align-items-center ">
-              <img src="" alt="" />
+            <div className="d-flex align-items-center pr-2 ">
+              <img
+                src={require("../assets/img/samuel.svg")}
+                alt=""
+                className="mr-2"
+                height="50px"
+                weight="50px"
+              />
               <div className="flex-column ">
                 <div className="text-grey font-medium font-20">
                   {data["firstName"]} {data["lastName"]}
@@ -29,7 +35,12 @@ const HeaderNav = (props) => {
                   {data["phone"]}
                 </div>
               </div>
-              <img src="" alt="" srcSet="" />
+              <img
+                src={require("../assets/img/notification.svg")}
+                alt=""
+                srcSet=""
+                className="ml-3"
+              />
             </div>
           </Navbar.Collapse>
         </Container>

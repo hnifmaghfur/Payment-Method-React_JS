@@ -52,7 +52,10 @@ class Transfer extends Component {
                 key={index}
                 className="bg-white shadow-sm mt-4 p-3 rounded-12"
               >
-                <Link to="/" className="text-decoration-none">
+                <Link
+                  to={{ pathname: `id/input_transfer/${item.id}` }}
+                  className="text-decoration-none"
+                >
                   <div className="d-flex flex-row align-items-center">
                     <img src="/asset/history/1.png" alt="" />
                     <div className="ml-3 text-dark">
